@@ -8,7 +8,7 @@ render() {
     <div className="App">
       <div>
         Nav Component
-      </div>  
+      </div>
     </div>
   );
 }
