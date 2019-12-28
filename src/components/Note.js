@@ -50,7 +50,11 @@ class Note extends React.Component {
   renderTags(note) {
   	if (note.tags) {
       return note.tags.map((tag, index) =>
-        <div className="tag" key={index}>
+        <div
+        className="tag"
+        key={index}
+        onClick={(e) => this.props.deleteTag(note.id, tag.id)}
+      >
         <span className="delete">
           <i className="material-icons">delete</i>
         </span>
@@ -85,7 +89,7 @@ class Note extends React.Component {
          <input className="note-button" type="submit" value="Submit" /> 
         </form>
         <div className="tag-container">
-        <div className="tag-button-container">
+       <div className="tag-button-container">
           {renderTagForm()}
           </div>
           <div className="tag-list-container">
