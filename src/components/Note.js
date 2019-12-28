@@ -21,11 +21,10 @@ class Note extends React.Component {
   }
 
   renderTagForm(note) {
-  	if (note.id !== undefined) {
-      if (!this.props.newTag) {
-       return (
-        <span>
-         Tag your note:
+  if (!this.props.newTag) {
+    return (
+      <span>
+        Tag your note:
         <i
           className="tag-button material-icons"
           onClick={() => this.props.showTagForm()}
@@ -34,20 +33,32 @@ class Note extends React.Component {
         </i>
       </span>
     );
-    } else {
-      return (
-       <form onSubmit={(e) => this.onTagSubmit(e)}>
+  } else {
+    return (
+      <form onSubmit={(e) => this.onTagSubmit(e)}>
         <input
           className="tag-input"
           type="text"
           placeholder="Tag Name..."
           ref={(input) => this.name = input}
          />
-        </form>
-     );
-    }  	
-   }
- }
+      </form>
+    );
+  }
+}
+
+  renderTags(note) {
+  	if (note.tags) {
+      return note.tags.map((tag, index) =>
+        <div className="tag" key={index}>
+        <span className="delete">
+          <i className="material-icons">delete</i>
+        </span>
+        {tag.name}
+        </div>
+      );
+    }
+  }
 
   render() {
   	const { note } = this.props;
@@ -72,7 +83,10 @@ class Note extends React.Component {
         </form>
         <div className="tag-container">
         <div className="tag-button-container">
-          {this.renderTagForm(note)}
+          {renderTagForm(note)}
+          </div>
+          <div className="tag-list-container">
+            {this.renderTags(note)}   
         </div>
       </div>
       </div>
